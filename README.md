@@ -17,7 +17,7 @@ Organization of the types will be defined by an
 Each type will need an editor and a viewer. Editors will capture
 user input and translate that input into
 the JSON data type (and the reverse; editors should translate JSON data to their UIs).
-Viewers will turn JSON data into HTML and vice versa.
+Viewers will turn JSON data into HTML (and vice versa?).
 
 We should make use of existing tools whenever possible (e.g. markdown, MathJax).
 Unfortunately, tools may skip the JSON data step (turning user input directly into
