@@ -74,9 +74,13 @@ Types omitted below are either self-explanatory or under active procrastination.
 
 ### Math
 
+#### InlineMath
+
+Some quick math, inline with normal text; achieved in LaTeX with `$...$`.
+
 #### Equation
 
-This subtype is familiar to many scientists. It represents an important mathematical
+This subtype represents an important mathematical
 statement, usually emphasized by being given the full page width for display. It is
 produced in LaTeX by the `equation` environment; however, unlike the LaTeX
 `equation`, this type says nothing about equation numbering.
@@ -93,12 +97,11 @@ An array of equations!
 ### Section
 
 The definition of a Section in the article grammar is a recursive one. A section that
-contains no subsections would match the definition, `Section: Title Block+`.
+contains no subsections would match the definition, `Section: Title (Paragraph | DisplayGroup)+`.
 
 ### Abstract
 
 Should be (ideally) a single paragraph of text, inline-math, references, and symbols.
-Maybe the definition should be: `Abstract: Paragraph+`?
 
 ### Figure
 
