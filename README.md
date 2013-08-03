@@ -28,11 +28,11 @@ display), thereby hindering fine-grained cross-referencing/sharing.
 A scientific article will be defined according to the following grammar. The primary purpose
 behind defining this grammar is to break an article into logical referenceable
 components found in modern scientific publication (in my experience).
-I use regex syntax to help define the grammar (`?`: 0 or 1, `+`: 1 or more,
+I use regex syntax to help define the grammar (`?`: 0 or 1, `*`: 0 or more, `+`: 1 or more,
 `(...)`: grouping, `|`: or).
 
 ```
-Article: Title Author+ Affiliation* Abstract? Content* Bibliography?
+Article: Title Author+ Affiliation* Abstract? Section+ Bibliography?
 
 Abstract: Inline+
 
@@ -46,7 +46,9 @@ Paragraph: (Inline | Equations)+
 
 Equations: (Equation EqnNum?)+
 
-Grid: (Figure | Table | Grid)+ Caption?
+Grid: (Figure | Table | Grid | Row)+ Caption?
+
+Row: Figure* Table* Grid*
 
 Figure: Media FigNum Caption?
 
@@ -54,7 +56,7 @@ Table: Data TableNum Caption?
 
 Caption: Inline+
 
-Title: Inline+
+Title: Word+
 
 Inline: Word | InlineMath | Reference | Symbol
 
@@ -79,7 +81,7 @@ produced in LaTeX by the `equation` environment; however, as opposed to the LaTe
 
 ### Equations
 
-This type generalizes the Equation type to cover equation arrays and equation numbering.
+This type enumerates the Equation type to cover equation arrays and equation numbering.
 
 ### Block
 
@@ -95,3 +97,8 @@ contains no subsections would match the definition, `Section: Title Block+`.
 
 Should be (ideally) a single paragraph of text, inline-math, references, and symbols.
 Maybe the definition should be: `Abstract: Paragraph+`?
+
+### Grid
+
+A method for spatially arranging and aligning elements side-by-side or on top of each other. 
+Recursive use allows for "merged cell" arrangements.
